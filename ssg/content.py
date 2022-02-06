@@ -25,12 +25,12 @@ class Content(Mapping):
     def type(self):
         return self.data['type'] if 'type' in self.data else None
 
-    @property
-    def type(self, type_setter):
-        self.data['type'] = type_setter
+    @type.setter
+    def type(self, type):
+        self.data['type'] = type
 
     def __getitem__(self, key):
-        return self.data['key']
+        return self.data[key]
 
     def __iter__(self):
         self.data.__iter__()
@@ -39,6 +39,7 @@ class Content(Mapping):
         return self.data.__len__()
 
     def __repr__(self):
+        # data = {key: value for key, value in self.data.iteritems()}
         data = {}
         for key, value in self.data.items():
             if key is not 'content':
